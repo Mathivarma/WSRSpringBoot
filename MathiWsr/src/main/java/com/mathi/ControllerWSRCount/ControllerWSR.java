@@ -69,8 +69,8 @@ public class ControllerWSR {
 	public String a() {
 		    byte[] signature;
 			try {
-				signature = getSignatureKey(secretKey, dateStamp, regionName, serviceName);
-				System.out.println("Signature : " + Hex.encodeHexString(signature));
+				//signature = getSignatureKey(secretKey, dateStamp, regionName, serviceName);
+			//	System.out.println("Signature : " + Hex.encodeHexString(signature));
 			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -93,7 +93,7 @@ public class ControllerWSR {
 
         return hexString;
     }
-    String secretKey = "n+t3A7/BBvL2Sf0aUXr8GBbHZMX/2uQga5UxfpY6";
+    
     String dateStamp = "20200404";
     String regionName = "ap-south-1";
     String serviceName = "execute-api";
@@ -128,19 +128,15 @@ public class ControllerWSR {
 	}
 
 	static byte[] getSignatureKey(String key, String dateStamp, String regionName, String serviceName) throws Exception {
-	    byte[] kSecret = ("AWS4" + "n+t3A7/BBvL2Sf0aUXr8GBbHZMX/2uQga5UxfpY6").getBytes("UTF-8");
-	    byte[] kDate = HmacSHA256(dateStamp, kSecret);
-	    byte[] kRegion = HmacSHA256(regionName, kDate);
-	    byte[] kService = HmacSHA256(serviceName, kRegion);
-	    byte[] kSigning = HmacSHA256("aws4_request", kService);
-	    return kSigning;
+	   
+	 
+	    return null;
 	}
 	   public void downloadFile(){     // This method will download file using RestTemplate
 	       try {
 	           HttpHeaders headers = new HttpHeaders();
 	           headers.setAccept(Arrays.asList(MediaType.APPLICATION_OCTET_STREAM));
-	           headers.add("Authorization", "AWS AKIAJPTB7Y6VFSW74TIA : f429b9b85215abbf0ac5df0f1e57a9b920ecf931c5fe34dea23a5fc3307186e3");
-	          // headers.add("X-Amz-Content-Sha256", "beaead3198f7da1e70d03ab969765e0821b24fc913697e929e726aeaebf0eba3");
+	           
 	           //headers.add("X-Amz-Date", "20200405T054747Z");
 
 	           HttpEntity<String> entity = new HttpEntity<>(headers);
